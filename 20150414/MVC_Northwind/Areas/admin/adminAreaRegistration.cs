@@ -17,7 +17,8 @@ namespace MVC_Northwind.Areas.admin
             context.MapRoute(
                 "admin_default",
                 "admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "MVC_Northwind.Areas.admin.Controllers" }   // 加入Area內的命名空間
             );
         }
     }
