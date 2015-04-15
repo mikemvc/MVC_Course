@@ -12,7 +12,9 @@ namespace MVC_Northwind
     {
         protected void Application_Start()
         {
+            // 註冊所有區域的Route
             AreaRegistration.RegisterAllAreas();
+
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
