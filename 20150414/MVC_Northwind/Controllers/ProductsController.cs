@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC_Northwind.Models;
+// 新增ViewModel的引用
+using MVC_Northwind.ViewModels;
+using Newtonsoft.Json;
 
 namespace MVC_Northwind.Controllers
 {
@@ -28,11 +31,36 @@ namespace MVC_Northwind.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Products products = db.Products.Find(id);
+            //Products products = db.Products.Find(id);
+            //if (products == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(products);
+            
+            // 新增的Lambda語法
+            //var products = db.Products.Where(p => p.ProductID == id).Select(p => new
+            //{
+            //    ProductID = p.ProductID,
+            //    ProductName = p.ProductName
+            //}).FirstOrDefault();
+            //return View(products);
+
+            // 改用ViewModel來呈現
+            var products = db.Products.Where(p => p.ProductID == id).Select(p => new ProductsViewModel()
+            {
+                ProductID = p.ProductID,
+                ProductName = p.ProductName,
+                QuantityPerUnit = p.QuantityPerUnit,
+                CategoryID = p.CategoryID,
+                CategoryName = p.Categories.CategoryName
+            }).FirstOrDefault();
             if (products == null)
             {
                 return HttpNotFound();
             }
+            var str = JsonConvert.SerializeObject(products);
+            var obj = JsonConvert.DeserializeObject<Products>(str);
             return View(products);
         }
 

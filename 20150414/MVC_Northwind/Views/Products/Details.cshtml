@@ -1,4 +1,6 @@
-﻿@model MVC_Northwind.Models.Products
+﻿@*@model MVC_Northwind.Models.Products*@
+@*修改為ViewModel*@
+@model MVC_Northwind.ViewModels.ProductsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -67,20 +69,20 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Categories.CategoryName)
+            @Html.DisplayNameFor(model => model.CategoryName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Categories.CategoryName)
+            @Html.DisplayFor(model => model.CategoryName)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Suppliers.CompanyName)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Suppliers.CompanyName)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>
