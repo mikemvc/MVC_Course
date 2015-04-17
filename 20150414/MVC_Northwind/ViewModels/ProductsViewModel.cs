@@ -18,6 +18,8 @@ namespace MVC_Northwind.ViewModels
         public Nullable<short> UnitsOnOrder { get; set; }
         public Nullable<short> ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
+        // 新增的
         public string CategoryName { get; set; }
+        public string CompanyName { get; set; }
     }
 }

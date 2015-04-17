@@ -53,7 +53,8 @@ namespace MVC_Northwind.Controllers
                 ProductName = p.ProductName,
                 QuantityPerUnit = p.QuantityPerUnit,
                 CategoryID = p.CategoryID,
-                CategoryName = p.Categories.CategoryName
+                CategoryName = p.Categories.CategoryName,
+                CompanyName = p.Suppliers.CompanyName                
             }).FirstOrDefault();
             if (products == null)
             {
