@@ -20,18 +20,21 @@ namespace MVC_Router.Controllers
             return View();
         }
 
+        // 登入頁面
         public ActionResult Login()
         {
             return View();
         }
 
+        // 登入驗證
         [HttpPost]
         public ActionResult Login(MemberViewModel member)
         {
             bool result = false;
+            string pass5 = "";
             if (!String.IsNullOrEmpty(member.LoginID))
             {
-                var pass5 = getMd5Hash(member.Password);
+                pass5 = getMd5Hash(member.Password);
                 result = db.Employees.Where(p => p.LoginID == member.LoginID).Select(p => p.Password.Contains(pass5)).FirstOrDefault();
             }
 
@@ -39,7 +42,9 @@ namespace MVC_Router.Controllers
             if (result)
             {
                 // userData 放入 FirstName,LastName
-                string userData = member.FirstName + "," + member.LastName;
+
+                var loginMember = db.Employees.Where(p => p.LoginID == member.LoginID && p.Password == pass5).FirstOrDefault();
+                string userData = loginMember.FirstName + "," + loginMember.LastName;
 
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
                     member.LoginID, DateTime.Now, DateTime.Now.AddMinutes(30),
@@ -56,6 +61,30 @@ namespace MVC_Router.Controllers
                 return View(member);
             }
         }
+
+        // 註冊頁面
+        public ActionResult Register()
+        {
+            return View(new MemberViewModel());
+        }
+
+        // 註冊資料頁面，註冊成功導向Index
+        [HttpPost]
+        public ActionResult Register(MemberViewModel member)
+        {
+            Employees employee = new Employees()
+            {
+                FirstName = member.FirstName,
+                LastName = member.LastName,
+                LoginID = member.LoginID,
+                Password = getMd5Hash(member.Password)
+            };
+            db.Employees.Add(employee);
+            db.SaveChanges();
+            return RedirectToAction("Login");            
+        }
+
+
 
         // 記得要釋放資料庫資源
         protected override void Dispose(bool disposing)
