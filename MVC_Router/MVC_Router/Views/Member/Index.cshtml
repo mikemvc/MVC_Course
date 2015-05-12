@@ -1,13 +1,36 @@
-﻿@{
+﻿@model MVC_Router.Models.Employees
+
+@{
     ViewBag.Title = "Index";
 }
+
+@functions{
+
+    public string DisplayImage(byte[] imageData)
+    {
+        string imageSrc = null;
+        if (imageData != null)
+        {
+            MemoryStream ms = new MemoryStream();
+            ms.Write(imageData, 78, imageData.Length - 78);
+            string imageBase64 = Convert.ToBase64String(ms.ToArray());
+            imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+
+        }
+        return imageSrc;
+    }
+
+}
+
 
 <h2>Index</h2>
 
 @*名子無法顯示，要修改Web.config*@
 @User.Identity.Name 您好
 <br />
-
+<img src="@DisplayImage(Model.Photo)" />
+<br />
+<hr />
 @{
     var member = (FormsIdentity)User.Identity;
     var ticket = member.Ticket;

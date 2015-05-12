@@ -14,10 +14,12 @@ namespace MVC_Router.Controllers
         // 資料庫資源
         private NorthwindDBEntities db = new NorthwindDBEntities();
 
+        [Authorize]
         // GET: Member
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View();
+            var employee = db.Employees.Where(e => e.EmployeeID == id).FirstOrDefault();
+            return View(employee);
         }
 
         // 登入頁面
@@ -53,7 +55,7 @@ namespace MVC_Router.Controllers
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryTicket);
                 // Client 加入 Cookie
                 Response.Cookies.Add(cookie);
-                return RedirectToAction("Index");                
+                return RedirectToAction("Index", new { id = loginMember.EmployeeID });
             }
             else
             {
@@ -68,7 +70,7 @@ namespace MVC_Router.Controllers
             return View(new MemberViewModel());
         }
 
-        // 註冊資料頁面，註冊成功導向Index
+        // 註冊資料頁面，註冊成功導向Login
         [HttpPost]
         public ActionResult Register(MemberViewModel member)
         {
@@ -83,8 +85,6 @@ namespace MVC_Router.Controllers
             db.SaveChanges();
             return RedirectToAction("Login");            
         }
-
-
 
         // 記得要釋放資料庫資源
         protected override void Dispose(bool disposing)
@@ -112,6 +112,26 @@ namespace MVC_Router.Controllers
                 sBuilder.Append(MD5data[i].ToString("x2"));
             }
             return sBuilder.ToString();
+        }
+        /// <summary>
+        /// 取得圖片，可由前端傳回ID
+        /// </summary>
+        /// <param name="id">傳入員工編號</param>
+        /// <returns>FileResult回傳圖片</returns>
+        public ActionResult GetImage(int id)
+        {
+            var employee = db.Employees.FirstOrDefault(x => x.EmployeeID == id);
+
+            if (employee!=null && employee.Photo != null)
+            {
+                using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+                {
+                    byte[] image = employee.Photo;
+                    ms.Write(image, 78, image.Length - 78);
+                    return File(ms.ToArray(), "image/jpeg");
+                }
+            }
+            return new EmptyResult();
         }
         #endregion
     }

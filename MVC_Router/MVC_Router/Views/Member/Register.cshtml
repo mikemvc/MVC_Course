@@ -1,0 +1,27 @@
+﻿@model MVC_Router.ViewModels.MemberViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.Label("FirstName", "名")
+    <br />
+    @Html.TextBoxFor(m => m.FirstName)
+    <br />
+    @Html.Label("LastName", "姓")
+    <br />
+    @Html.TextBoxFor(m => m.LastName)
+    <br />
+    @Html.Label("LoginID", "會員帳號")
+    <br />
+    @Html.TextBoxFor(m => m.LoginID)
+    <br />
+    @Html.Label("Password", "密碼")
+    <br />
+    @Html.PasswordFor(m => m.Password)
+    <p></p>
+    <input type="submit" value="送出" />
+}
