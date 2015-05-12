@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@User.Identity.Name 您好
+<br />
+
+@{
+    var member = (FormsIdentity)User.Identity;
+    var ticket = member.Ticket;
+    var userData = ticket.UserData;
+}
+
+您的全名是:
+<p>@userData</p>
