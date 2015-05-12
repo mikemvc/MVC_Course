@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NorthwindDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NorthwindDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -392,14 +392,6 @@
           <Property Name="UnitsInStock" Type="smallint" />
           <Property Name="Discontinued" Type="bit" Nullable="false" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6013: 資料表/檢視 'D:\GITHUB\MVC_COURSE\MVC_ROUTER\MVC_ROUTER\APP_DATA\NORTHWINDDB.MDF.dbo.Quarterly Orders' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-        <EntityType Name="Quarterly Orders">
-          <Property Name="CustomerID" Type="nchar" MaxLength="5" />
-          <Property Name="CompanyName" Type="nvarchar" MaxLength="40" />
-          <Property Name="City" Type="nvarchar" MaxLength="15" />
-          <Property Name="Country" Type="nvarchar" MaxLength="15" />
-        </EntityType>-->
         <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'D:\GITHUB\MVC_COURSE\MVC_ROUTER\MVC_ROUTER\APP_DATA\NORTHWINDDB.MDF.dbo.Sales by Category' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Sales by Category">
@@ -902,8 +894,7 @@
             <End Role="Territories" EntitySet="Territories" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NorthwindDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1561,13 +1552,13 @@
             <End Role="Territories" EntitySet="Territories" />
           </AssociationSet>
           <FunctionImport Name="CustOrderHist" ReturnType="Collection(NorthwindDBModel.CustOrderHist_Result)">
-            <Parameter Name="CustomerID" Mode="In" Type="String" />
+          <Parameter Name="CustomerID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="CustOrdersDetail" ReturnType="Collection(NorthwindDBModel.CustOrdersDetail_Result)">
-            <Parameter Name="OrderID" Mode="In" Type="Int32" />
+          <Parameter Name="OrderID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CustOrdersOrders" ReturnType="Collection(NorthwindDBModel.CustOrdersOrders_Result)">
-            <Parameter Name="CustomerID" Mode="In" Type="String" />
+          <Parameter Name="CustomerID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Employee_Sales_by_Country" ReturnType="Collection(NorthwindDBModel.Employee_Sales_by_Country_Result)">
             <Parameter Name="Beginning_Date" Mode="In" Type="DateTime" />

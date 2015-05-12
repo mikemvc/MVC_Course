@@ -13,6 +13,8 @@ namespace MVC_Router.ViewModels
         public int EmployeeID { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
+        public string LoginID { get; set; }
+        public string Password { get; set; }
         public string Title { get; set; }
         public string TitleOfCourtesy { get; set; }
         public DateTime? BirthDate { get; set; }
