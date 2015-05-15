@@ -1,5 +1,4 @@
 # MVC_Course
-MVC_Course
 
 <h3>MVC的學習筆記:</h3>
 2015/04/10 LINQ_CRUD<br />
