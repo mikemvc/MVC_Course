@@ -266,6 +266,8 @@
       <DependentUpon>NorthwindDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ProductsDBService.cs" />
+    <Compile Include="ViewModels\ProductsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\NorthwindDB.mdf" />
