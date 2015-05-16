@@ -1,5 +1,6 @@
-﻿@model IEnumerable<MVC_Automapper.Models.Products>
-
+﻿@* 修改mode為ViewModel的型別*@
+@*@model IEnumerable<MVC_Automapper.Models.Products>*@
+@model  List<MVC_Automapper.ViewModels.ProductsViewModel>
 @{
     ViewBag.Title = "Index";
 }
@@ -12,31 +13,31 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProductName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ProductName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.QuantityPerUnit)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().QuantityPerUnit)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UnitPrice)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().UnitPrice)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UnitsInStock)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().UnitsInStock)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UnitsOnOrder)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().UnitsOnOrder)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReorderLevel)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ReorderLevel)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Discontinued)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Discontinued)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Categories.CategoryName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Categories.CategoryName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Suppliers.CompanyName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Suppliers.CompanyName)
         </th>
         <th></th>
     </tr>

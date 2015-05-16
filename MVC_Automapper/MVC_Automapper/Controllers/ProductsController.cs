@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC_Automapper.Models;
+using MVC_Automapper.Service;
 
 namespace MVC_Automapper.Controllers
 {
@@ -17,8 +18,11 @@ namespace MVC_Automapper.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Categories).Include(p => p.Suppliers);
-            return View(products.ToList());
+            //var products = db.Products.Include(p => p.Categories).Include(p => p.Suppliers);
+            //return View(products.ToList());
+            ProductsDBService service = new ProductsDBService();
+            var result = service.GetAllProducts();
+            return View(result);
         }
 
         // GET: Products/Details/5
